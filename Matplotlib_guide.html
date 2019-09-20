@@ -11817,11 +11817,11 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="A-quick-note-on-syntax-and-the-two-approaches-to-matplotlib">A quick note on syntax and the two approaches to <code>matplotlib</code><a class="anchor-link" href="#A-quick-note-on-syntax-and-the-two-approaches-to-matplotlib">&#182;</a></h3><p>Those of you who have used <code>matplotlib</code> in the past may be used to seeing things like</p>
-<p><code>import matplotlib.pyplot as plt</code>
-<code>plt.plot(x,y)</code></p>
+<p><code>import matplotlib.pyplot as plt</code></p>
+<p><code>plt.plot(x,y)</code></p>
 <p>This is one of the two main approaches to using <code>matplotlib</code>, which involves calling the package. In this guide, I will <strong>not</strong> be using <code>plt.plot(x,y)</code>, favouring instead intialising <code>Figures</code> and <code>Axes</code>, making use of the object oriented nature of the package. Don't be put off by this. Using <code>plt.plot</code>, <code>plt.label</code> etc. is a valid approach, but you will find that it limits you further down the road, as you have less control over your code and presentation. Usage of</p>
-<p><code>fig, ax = plt.subplots()</code>
-<code>ax.plot(x,y)</code></p>
+<p><code>fig, ax = plt.subplots()</code></p>
+<p><code>ax.plot(x,y)</code></p>
 <p>allows you to have far greater control over what data are being plotted on which axes, and you can manipulate each <code>Figure</code> and <code>Axes</code> individually and precisely. Have a look at the <a href="#OOP_intro">object oriented guide</a> for a little more insight into this, or speak to your lab demonstrators.</p>
 <p>The one exception to this is my use of <code>plt.show()</code>. This will display all Figures held in the memory of the computer which have not yet been displayed. You can also display a specific Figure (called e.g. <code>fig</code>) by using <code>fig.show()</code>. I use <code>plt.show()</code> because it makes little difference here.</p>
 
