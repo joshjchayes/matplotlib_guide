@@ -11784,7 +11784,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Second year labs are a step-up from first year. The experiments are more involved, the physics is often harder, and the expectations of your demonstrators are higher. One of the areas with which students have historically struggled is generating publication-quality plots. Many people have their own preferred system which they use to generate these plots, but the most common is using the Python module <code>matplotlib</code>. This notebook is intended to serve as a guide to introduce some of the core functionality of <code>matplotlib</code>. This is by no means conclusive, and for more information you should look to the matplotlib website (<a href="https://matplotlib.org/">https://matplotlib.org/</a>), where there are many excellent examples available, along with extensive documentiation.</p>
+<p>Second year labs are a step-up from first year. The experiments are more involved, the physics is often harder, and the expectations of your demonstrators are higher. One of the areas with which students often find difficult is generating publication-quality plots. Many people have their own preferred system which they use to generate these plots, but a common system is using the Python module <code>matplotlib</code>. This notebook is intended to serve as a guide to introduce some of the core functionality of <code>matplotlib</code>. This is by no means conclusive, and for more information you should look to the matplotlib website (<a href="https://matplotlib.org/">https://matplotlib.org/</a>), where there are many excellent examples available, along with extensive documentiation.</p>
 <p>There are many plotting libraries in many different languages available. <code>matplotlib</code> is popular partially because it is easy to pick up and use, but also very powerful once you know your way around it. <code>matplotlib</code> is inspired by the plotting routines and styles of MATLAB, which is where the name comes from. A large number of undergrads use Origin Pro, as this allows for some data analysis as well as plotting. Whilst Origin is fine for use in the lab, there is an argument to be made that you should learn to use <code>matplotlib</code> as well, as it is far more suited to producing publication-quality figures when used effectively, and can also be added directly to software pipelines without the use of a GUI, a feature which you will use extensively later on in your degree.</p>
 <p>Also, this is not a programming guide. It is written assuming that you have a basic knowledge of programming and the concept of how to assign variables and use functions, along with knowledge of the <code>numpy</code> module. There are a couple of places where functions are defined in code. If you struggle with these parts, speak to your friends and lab demonstrators for help.</p>
 <p>One final thing: I have written all of the code snippets so that they will generally run on their own provided you input some values for <code>x</code> and <code>y</code>. The <code>import</code> statements at the top of most snippets are not strictly necessary within this notebook, but I have left them in to make copy and pasting these snippets easier.</p>
@@ -11808,6 +11808,22 @@ div#notebook {
 <p><a href="#templates">Templates</a></p>
 <p><a href="#common_issues">Common issues</a></p>
 <p><a href="#OOP_intro">A brief introduction to object oriented programming</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="A-quick-note-on-syntax-and-the-two-approaches-to-matplotlib">A quick note on syntax and the two approaches to <code>matplotlib</code><a class="anchor-link" href="#A-quick-note-on-syntax-and-the-two-approaches-to-matplotlib">&#182;</a></h3><p>Those of you who have used <code>matplotlib</code> in the past may be used to seeing things like</p>
+<p><code>import matplotlib.pyplot as plt</code>
+<code>plt.plot(x,y)</code></p>
+<p>This is one of the two main approaches to using <code>matplotlib</code>, which involves calling the package. In this guide, I will <strong>not</strong> be using <code>plt.plot(x,y)</code>, favouring instead intialising <code>Figures</code> and <code>Axes</code>, making use of the object oriented nature of the package. Don't be put off by this. Using <code>plt.plot</code>, <code>plt.label</code> etc. is a valid approach, but you will find that it limits you further down the road, as you have less control over your code and presentation. Usage of</p>
+<p><code>fig, ax = plt.subplots()</code>
+<code>ax.plot(x,y)</code></p>
+<p>allows you to have far greater control over what data are being plotted on which axes, and you can manipulate each <code>Figure</code> and <code>Axes</code> individually and precisely. Have a look at the <a href="#OOP_intro">object oriented guide</a> for a little more insight into this, or speak to your lab demonstrators.</p>
+<p>The one exception to this is my use of <code>plt.show()</code>. This will display all Figures held in the memory of the computer which have not yet been displayed. You can also display a specific Figure (called e.g. <code>fig</code>) by using <code>fig.show()</code>. I use <code>plt.show()</code> because it makes little difference here.</p>
 
 </div>
 </div>
@@ -12824,7 +12840,7 @@ iUBEJMEpEYiIJDglAhGRBPf/AQpv3IqRwGcpAAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id='formatting'></a></p>
-<h3 id="Formatting">Formatting<a class="anchor-link" href="#Formatting">&#182;</a></h3><p>So far we have let <code>matplotlib</code> do all the formatting for us. If you're just plotting something up quickly to visualise, then that is fine, but if you want to have a figure to put in to a lab report, then you want to spend a little time tweaking the appearance of your figure.</p>
+<h3 id="Formatting">Formatting<a class="anchor-link" href="#Formatting">&#182;</a></h3><p>So far we have let <code>matplotlib</code> do all the formatting for us. If you're just plotting something up quickly to visualise, then that is fine, but if you want to have a publishable quality figure, for example to put in to a lab report, then you want to spend a little time tweaking the appearance of your figure.</p>
 <p>We are going to stick with using <code>ax.plot</code> and editing the plots which this produces. If you find yourself using one of the other types of plot available, you might have to have a read of the <code>matplotlib</code> documentation to figure out (ha) exactly how to format the particular type of plot you're working on.</p>
 <p>Let's go back to our two data sets, with a couple of extras, and see how we can change the formatting.</p>
 
@@ -15216,6 +15232,9 @@ EZGYU9CLiMTc/wO0bXEzhoqAsgAAAABJRU5ErkJggg==
 <p>.png are pixellated, and you can set the resolution using the <code>dpi=</code> keyword in <code>savefig</code>. DPI stands for dots per square inch - the higher the number, the more pixels you have in the figure.</p>
 <p>For publication-quality plots, use .pdf! PDF images are what are known as vector graphics, which basically means that they don't suffer from pixellation as you change the size of the image.</p>
 <p>Generally, the only time I would recommend using .png over .pdf is if there are a very large number of points on your figure and the file size is getting large in .pdf format. Since .png is a set file size (once DPI is set), there is no scaling with number of points.</p>
+<p>One last thing on saving: sometimes you might find that even when using <code>fig.tight_layout()</code> some of the figure is cut off in the final .pdf. Don't worry about why too much, but know that there is a simple solution. When you use <code>savefig</code>, add in the keyword <code>bbox_inches='tight'</code>. So the saveline from above becomes</p>
+<p><code>fig.savefig('sample_figure.pdf', bbox_inches='tight')</code></p>
+<p>and this will ensure that even if <code>plt.show()</code> shows your figure with some part cut off, the saved .pdf will have saved the full image!</p>
 
 </div>
 </div>
@@ -15902,6 +15921,25 @@ MzOzjJxEm5mZmZll5CTazMzMzCyj/w/H8DZHW18QDQAAAABJRU5ErkJggg==
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>then what you have encountered is a common error among those who are new to using object oriented programming (see <a href="#OOP_intro">below</a>).</p>
 <p>In short, what the problem line is doing is calling the class, rather than an instance of the class. To operate on an object, the object must first be initialised, else the code doesn't know what it is trying to work on. Imagine we have an object called <code>Dog</code>, which contains the method <code>Dog.bark()</code>. If we try and make one dog bark by using <code>Dog.bark()</code>, the code wouldn't know which dog to make bark. The code can do two things at that point - either break, which is sensible, or make all the <code>Dogs</code> bark, which is not. Initialise your objects.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Some-of-my-figure-is-being-cut-off-in-the-save-file!">Some of my figure is being cut off in the save file!<a class="anchor-link" href="#Some-of-my-figure-is-being-cut-off-in-the-save-file!">&#182;</a></h5><p>Sometimes, especially if you have large axis labels which use fractions, or fancy layouts, <code>matplotlib</code> can cut off the edges of your figures when displaying or saving them. Luckily there's a quick solution to this. When you use <code>savefig</code>, add in the keyword <code>bbox_inches='tight'</code>. So the saveline from <a href="#saving_figures">above</a> becomes</p>
+<p><code>fig.savefig('sample_figure.pdf', bbox_inches='tight')</code></p>
+<p>and this will ensure that the saved .pdf will have saved the full image!</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p><a href="#top">Back to top</a></p>
 
 </div>
